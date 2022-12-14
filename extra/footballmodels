@@ -1,0 +1,93 @@
+models
+
+user
+	id
+	firstname
+	lastname
+	email
+	role
+		player
+		admin
+	pass
+	created DATETIME,
+    modified DATETIME
+pick
+	id
+	game_id - has one
+	user_id - has one
+	team_id - has one
+	created DATETIME,
+    modified DATETIME
+team
+	id
+	logo
+	name
+	created DATETIME,
+    modified DATETIME
+game
+	id
+	home_team_id -> has one - many?
+	away_team_id => has one - many?
+	winning_team_id - has many?
+	is_home
+	is_monday
+	is_playoff
+	is_championship
+	is_superbowl
+	home_points
+	away_points
+	total points
+	value
+	game_time
+	game_week - has one
+	created DATETIME,
+    modified DATETIME
+week
+	id
+	season_id - has one
+	week_number
+	value
+	week_start
+	week_end
+	created DATETIME,
+    modified DATETIME
+season
+	id
+	year
+	created DATETIME,
+    modified DATETIME
+
+
+18 weeks in regular season
+2 weeks plaoffs
+1 week championship
+1 week sb
+
+stakes
+	week = 10 per week
+	playoff = 5 per game
+	championship = 10 per game
+	superbowl = 25 per game
+
+points - point in the middle between goes to the higher guess
+
+Pages
+	Admin
+		game entry (super admin)
+		game edit	(super admin)
+		user edit	(super admin)
+
+	login
+		user profile
+		game picks
+		standings
+			overall
+			this week progress	
+		statistics
+
+
+Users
+Scott Reynolds
+Mark Frizzell
+Nick Romano
+Jay Maccio
