@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -14,6 +15,7 @@ declare(strict_types=1);
  * @since     0.2.9
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  */
+
 namespace App\Controller;
 
 use Cake\Controller\Controller;
@@ -28,6 +30,17 @@ use Cake\Controller\Controller;
  */
 class AppController extends Controller
 {
+
+    public function beforeFilter(\Cake\Event\EventInterface $event)
+    {
+        parent::beforeFilter($event);
+        // Configure the login action to not require authentication, preventing
+        // the infinite redirect loop issue
+        $loggedInUser = $this->request->getAttribute('identity') ?? null;
+
+        $this->set(compact('loggedInUser'));
+    }
+
     /**
      * Initialization hook method.
      *
@@ -49,5 +62,7 @@ class AppController extends Controller
          * see https://book.cakephp.org/4/en/controllers/components/form-protection.html
          */
         //$this->loadComponent('FormProtection');
+
+        $this->loadComponent('Authentication.Authentication');
     }
 }
