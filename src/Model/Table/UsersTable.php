@@ -61,43 +61,37 @@ class UsersTable extends Table
     public function validationDefault(Validator $validator): Validator
     {
         $validator
-            ->email('email')
-            ->requirePresence('email', 'create')
-            ->notEmptyString('email');
-
-        $validator
             ->scalar('username')
             ->maxLength('username', 255)
-            ->requirePresence('username', 'create')
-            ->notEmptyString('username');
+            ->allowEmptyString('username');
+
+        $validator
+            ->email('email')
+            ->allowEmptyString('email');
 
         $validator
             ->scalar('firstname')
             ->maxLength('firstname', 255)
-            ->requirePresence('firstname', 'create')
-            ->notEmptyString('firstname');
+            ->allowEmptyString('firstname');
 
         $validator
             ->scalar('lastname')
             ->maxLength('lastname', 255)
-            ->requirePresence('lastname', 'create')
-            ->notEmptyString('lastname');
+            ->allowEmptyString('lastname');
 
         $validator
             ->scalar('password')
             ->maxLength('password', 255)
-            ->requirePresence('password', 'create')
-            ->notEmptyString('password');
+            ->allowEmptyString('password');
+
+        $validator
+            ->boolean('is_superiser')
+            ->allowEmptyString('is_superiser');
 
         $validator
             ->scalar('role')
             ->maxLength('role', 255)
-            ->requirePresence('role', 'create')
-            ->notEmptyString('role');
-
-        $validator
-            ->boolean('is_superuser')
-            ->allowEmptyString('is_superuser');
+            ->allowEmptyString('role');
 
         return $validator;
     }
@@ -111,8 +105,8 @@ class UsersTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
-        $rules->add($rules->isUnique(['email']), ['errorField' => 'email']);
         $rules->add($rules->isUnique(['username']), ['errorField' => 'username']);
+        $rules->add($rules->isUnique(['email']), ['errorField' => 'email']);
 
         return $rules;
     }

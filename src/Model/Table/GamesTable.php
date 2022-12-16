@@ -50,7 +50,6 @@ class GamesTable extends Table
 
         $this->belongsTo('Weeks', [
             'foreignKey' => 'week_id',
-            'joinType' => 'INNER',
         ]);
         $this->hasMany('Picks', [
             'foreignKey' => 'game_id',
@@ -67,17 +66,15 @@ class GamesTable extends Table
     {
         $validator
             ->integer('home_team_id')
-            ->requirePresence('home_team_id', 'create')
-            ->notEmptyString('home_team_id');
+            ->allowEmptyString('home_team_id');
 
         $validator
             ->integer('away_team_id')
-            ->requirePresence('away_team_id', 'create')
-            ->notEmptyString('away_team_id');
+            ->allowEmptyString('away_team_id');
 
         $validator
             ->integer('week_id')
-            ->notEmptyString('week_id');
+            ->allowEmptyString('week_id');
 
         $validator
             ->boolean('is_playoff')

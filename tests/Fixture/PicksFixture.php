@@ -23,8 +23,8 @@ class PicksFixture extends TestFixture
                 'user_id' => 1,
                 'game_id' => 1,
                 'team_id' => 1,
-                'created' => '2022-12-14 03:21:44',
-                'modified' => '2022-12-14 03:21:44',
+                'created' => 1671167850,
+                'modified' => 1671167850,
             ],
         ];
         parent::init();

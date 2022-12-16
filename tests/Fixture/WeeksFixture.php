@@ -24,10 +24,10 @@ class WeeksFixture extends TestFixture
                 'week_number' => 1,
                 'value' => 1,
                 'is_post_season' => 1,
-                'week_start' => '2022-12-14 03:21:09',
-                'week_end' => '2022-12-14 03:21:09',
-                'created' => '2022-12-14 03:21:09',
-                'modified' => '2022-12-14 03:21:09',
+                'week_start' => '2022-12-16 05:18:36',
+                'week_end' => '2022-12-16 05:18:36',
+                'created' => 1671167916,
+                'modified' => 1671167916,
             ],
         ];
         parent::init();

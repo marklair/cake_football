@@ -28,11 +28,11 @@
                 </tr>
                 <tr>
                     <th><?= __('Home Team Id') ?></th>
-                    <td><?= $this->Number->format($game->home_team_id) ?></td>
+                    <td><?= $game->home_team_id === null ? '' : $this->Number->format($game->home_team_id) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Away Team Id') ?></th>
-                    <td><?= $this->Number->format($game->away_team_id) ?></td>
+                    <td><?= $game->away_team_id === null ? '' : $this->Number->format($game->away_team_id) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Home Points') ?></th>

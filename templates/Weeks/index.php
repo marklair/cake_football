@@ -28,7 +28,7 @@
                 <tr>
                     <td><?= $this->Number->format($week->id) ?></td>
                     <td><?= $week->has('season') ? $this->Html->link($week->season->id, ['controller' => 'Seasons', 'action' => 'view', $week->season->id]) : '' ?></td>
-                    <td><?= $this->Number->format($week->week_number) ?></td>
+                    <td><?= $week->week_number === null ? '' : $this->Number->format($week->week_number) ?></td>
                     <td><?= $week->value === null ? '' : $this->Number->format($week->value) ?></td>
                     <td><?= h($week->is_post_season) ?></td>
                     <td><?= h($week->week_start) ?></td>

@@ -9,13 +9,13 @@ use Cake\ORM\Entity;
  * Week Entity
  *
  * @property int $id
- * @property int $season_id
- * @property int $week_number
+ * @property int|null $season_id
+ * @property int|null $week_number
  * @property int|null $value
  * @property bool|null $is_post_season
  * @property \Cake\I18n\FrozenTime|null $week_start
  * @property \Cake\I18n\FrozenTime|null $week_end
- * @property \Cake\I18n\FrozenTime|null $created
+ * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime|null $modified
  *
  * @property \App\Model\Entity\Season $season

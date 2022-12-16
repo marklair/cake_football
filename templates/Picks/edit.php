@@ -25,9 +25,9 @@
             <fieldset>
                 <legend><?= __('Edit Pick') ?></legend>
                 <?php
-                    echo $this->Form->control('user_id', ['options' => $users]);
-                    echo $this->Form->control('game_id', ['options' => $games]);
-                    echo $this->Form->control('team_id', ['options' => $teams]);
+                    echo $this->Form->control('user_id', ['options' => $users, 'empty' => true]);
+                    echo $this->Form->control('game_id', ['options' => $games, 'empty' => true]);
+                    echo $this->Form->control('team_id', ['options' => $teams, 'empty' => true]);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

@@ -24,7 +24,7 @@
                 </tr>
                 <tr>
                     <th><?= __('Year') ?></th>
-                    <td><?= $this->Number->format($season->year) ?></td>
+                    <td><?= $season->year === null ? '' : $this->Number->format($season->year) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Created') ?></th>

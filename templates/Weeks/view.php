@@ -28,7 +28,7 @@
                 </tr>
                 <tr>
                     <th><?= __('Week Number') ?></th>
-                    <td><?= $this->Number->format($week->week_number) ?></td>
+                    <td><?= $week->week_number === null ? '' : $this->Number->format($week->week_number) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Value') ?></th>

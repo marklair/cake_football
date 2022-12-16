@@ -18,7 +18,7 @@
             <fieldset>
                 <legend><?= __('Add Week') ?></legend>
                 <?php
-                    echo $this->Form->control('season_id', ['options' => $seasons]);
+                    echo $this->Form->control('season_id', ['options' => $seasons, 'empty' => true]);
                     echo $this->Form->control('week_number');
                     echo $this->Form->control('value');
                     echo $this->Form->control('is_post_season');

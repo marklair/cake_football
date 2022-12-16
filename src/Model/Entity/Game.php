@@ -9,9 +9,9 @@ use Cake\ORM\Entity;
  * Game Entity
  *
  * @property int $id
- * @property int $home_team_id
- * @property int $away_team_id
- * @property int $week_id
+ * @property int|null $home_team_id
+ * @property int|null $away_team_id
+ * @property int|null $week_id
  * @property bool|null $is_playoff
  * @property bool|null $is_championship
  * @property bool|null $is_superbowl
@@ -19,7 +19,7 @@ use Cake\ORM\Entity;
  * @property int|null $away_points
  * @property int|null $value
  * @property \Cake\I18n\FrozenTime|null $game_time
- * @property \Cake\I18n\FrozenTime|null $created
+ * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime|null $modified
  *
  * @property \App\Model\Entity\Week $week

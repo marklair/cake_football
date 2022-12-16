@@ -9,9 +9,9 @@ use Cake\ORM\Entity;
  * Team Entity
  *
  * @property int $id
- * @property string $logo
- * @property string $name
- * @property \Cake\I18n\FrozenTime|null $created
+ * @property string|null $logo
+ * @property string|null $name
+ * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime|null $modified
  *
  * @property \App\Model\Entity\Pick[] $picks

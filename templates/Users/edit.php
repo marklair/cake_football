@@ -22,13 +22,13 @@
             <fieldset>
                 <legend><?= __('Edit User') ?></legend>
                 <?php
-                    echo $this->Form->control('email');
                     echo $this->Form->control('username');
+                    echo $this->Form->control('email');
                     echo $this->Form->control('firstname');
                     echo $this->Form->control('lastname');
                     echo $this->Form->control('password');
+                    echo $this->Form->control('is_superiser');
                     echo $this->Form->control('role');
-                    echo $this->Form->control('is_superuser');
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

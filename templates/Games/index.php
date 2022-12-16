@@ -31,8 +31,8 @@
                 <?php foreach ($games as $game): ?>
                 <tr>
                     <td><?= $this->Number->format($game->id) ?></td>
-                    <td><?= $this->Number->format($game->home_team_id) ?></td>
-                    <td><?= $this->Number->format($game->away_team_id) ?></td>
+                    <td><?= $game->home_team_id === null ? '' : $this->Number->format($game->home_team_id) ?></td>
+                    <td><?= $game->away_team_id === null ? '' : $this->Number->format($game->away_team_id) ?></td>
                     <td><?= $game->has('week') ? $this->Html->link($game->week->id, ['controller' => 'Weeks', 'action' => 'view', $game->week->id]) : '' ?></td>
                     <td><?= h($game->is_playoff) ?></td>
                     <td><?= h($game->is_championship) ?></td>

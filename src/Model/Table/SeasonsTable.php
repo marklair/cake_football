@@ -62,8 +62,7 @@ class SeasonsTable extends Table
     {
         $validator
             ->integer('year')
-            ->requirePresence('year', 'create')
-            ->notEmptyString('year');
+            ->allowEmptyString('year');
 
         return $validator;
     }

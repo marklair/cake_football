@@ -50,7 +50,6 @@ class WeeksTable extends Table
 
         $this->belongsTo('Seasons', [
             'foreignKey' => 'season_id',
-            'joinType' => 'INNER',
         ]);
         $this->hasMany('Games', [
             'foreignKey' => 'week_id',
@@ -67,12 +66,11 @@ class WeeksTable extends Table
     {
         $validator
             ->integer('season_id')
-            ->notEmptyString('season_id');
+            ->allowEmptyString('season_id');
 
         $validator
             ->integer('week_number')
-            ->requirePresence('week_number', 'create')
-            ->notEmptyString('week_number');
+            ->allowEmptyString('week_number');
 
         $validator
             ->integer('value')

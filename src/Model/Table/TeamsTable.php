@@ -63,14 +63,12 @@ class TeamsTable extends Table
         $validator
             ->scalar('logo')
             ->maxLength('logo', 255)
-            ->requirePresence('logo', 'create')
-            ->notEmptyString('logo');
+            ->allowEmptyString('logo');
 
         $validator
             ->scalar('name')
             ->maxLength('name', 255)
-            ->requirePresence('name', 'create')
-            ->notEmptyString('name');
+            ->allowEmptyString('name');
 
         return $validator;
     }

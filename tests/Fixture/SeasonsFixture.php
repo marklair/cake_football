@@ -21,8 +21,8 @@ class SeasonsFixture extends TestFixture
             [
                 'id' => 1,
                 'year' => 1,
-                'created' => '2022-12-14 03:20:44',
-                'modified' => '2022-12-14 03:20:44',
+                'created' => 1671167866,
+                'modified' => 1671167866,
             ],
         ];
         parent::init();

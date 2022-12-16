@@ -9,10 +9,10 @@ use Cake\ORM\Entity;
  * Pick Entity
  *
  * @property int $id
- * @property int $user_id
- * @property int $game_id
- * @property int $team_id
- * @property \Cake\I18n\FrozenTime|null $created
+ * @property int|null $user_id
+ * @property int|null $game_id
+ * @property int|null $team_id
+ * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime|null $modified
  *
  * @property \App\Model\Entity\User $user

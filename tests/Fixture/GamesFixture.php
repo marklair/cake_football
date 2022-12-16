@@ -29,9 +29,9 @@ class GamesFixture extends TestFixture
                 'home_points' => 1,
                 'away_points' => 1,
                 'value' => 1,
-                'game_time' => '2022-12-14 03:22:22',
-                'created' => '2022-12-14 03:22:22',
-                'modified' => '2022-12-14 03:22:22',
+                'game_time' => '2022-12-16 05:17:13',
+                'created' => 1671167833,
+                'modified' => 1671167833,
             ],
         ];
         parent::init();

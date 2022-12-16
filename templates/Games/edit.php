@@ -25,7 +25,7 @@
                 <?php
                     echo $this->Form->control('home_team_id');
                     echo $this->Form->control('away_team_id');
-                    echo $this->Form->control('week_id', ['options' => $weeks]);
+                    echo $this->Form->control('week_id', ['options' => $weeks, 'empty' => true]);
                     echo $this->Form->control('is_playoff');
                     echo $this->Form->control('is_championship');
                     echo $this->Form->control('is_superbowl');

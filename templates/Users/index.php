@@ -12,12 +12,12 @@
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('email') ?></th>
                     <th><?= $this->Paginator->sort('username') ?></th>
+                    <th><?= $this->Paginator->sort('email') ?></th>
                     <th><?= $this->Paginator->sort('firstname') ?></th>
                     <th><?= $this->Paginator->sort('lastname') ?></th>
+                    <th><?= $this->Paginator->sort('is_superiser') ?></th>
                     <th><?= $this->Paginator->sort('role') ?></th>
-                    <th><?= $this->Paginator->sort('is_superuser') ?></th>
                     <th><?= $this->Paginator->sort('created') ?></th>
                     <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
@@ -27,12 +27,12 @@
                 <?php foreach ($users as $user): ?>
                 <tr>
                     <td><?= $this->Number->format($user->id) ?></td>
-                    <td><?= h($user->email) ?></td>
                     <td><?= h($user->username) ?></td>
+                    <td><?= h($user->email) ?></td>
                     <td><?= h($user->firstname) ?></td>
                     <td><?= h($user->lastname) ?></td>
+                    <td><?= h($user->is_superiser) ?></td>
                     <td><?= h($user->role) ?></td>
-                    <td><?= h($user->is_superuser) ?></td>
                     <td><?= h($user->created) ?></td>
                     <td><?= h($user->modified) ?></td>
                     <td class="actions">

@@ -19,12 +19,12 @@
             <h3><?= h($user->id) ?></h3>
             <table>
                 <tr>
-                    <th><?= __('Email') ?></th>
-                    <td><?= h($user->email) ?></td>
-                </tr>
-                <tr>
                     <th><?= __('Username') ?></th>
                     <td><?= h($user->username) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Email') ?></th>
+                    <td><?= h($user->email) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Firstname') ?></th>
@@ -51,8 +51,8 @@
                     <td><?= h($user->modified) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Is Superuser') ?></th>
-                    <td><?= $user->is_superuser ? __('Yes') : __('No'); ?></td>
+                    <th><?= __('Is Superiser') ?></th>
+                    <td><?= $user->is_superiser ? __('Yes') : __('No'); ?></td>
                 </tr>
             </table>
             <div class="related">

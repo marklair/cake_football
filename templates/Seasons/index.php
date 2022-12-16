@@ -22,7 +22,7 @@
                 <?php foreach ($seasons as $season): ?>
                 <tr>
                     <td><?= $this->Number->format($season->id) ?></td>
-                    <td><?= $this->Number->format($season->year) ?></td>
+                    <td><?= $season->year === null ? '' : $this->Number->format($season->year) ?></td>
                     <td><?= h($season->created) ?></td>
                     <td><?= h($season->modified) ?></td>
                     <td class="actions">

@@ -9,14 +9,14 @@ use Cake\ORM\Entity;
  * User Entity
  *
  * @property int $id
- * @property string $email
- * @property string $username
- * @property string $firstname
- * @property string $lastname
- * @property string $password
- * @property string $role
- * @property bool|null $is_superuser
- * @property \Cake\I18n\FrozenTime|null $created
+ * @property string|null $username
+ * @property string|null $email
+ * @property string|null $firstname
+ * @property string|null $lastname
+ * @property string|null $password
+ * @property bool|null $is_superiser
+ * @property string|null $role
+ * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime|null $modified
  *
  * @property \App\Model\Entity\Pick[] $picks
@@ -33,13 +33,13 @@ class User extends Entity
      * @var array<string, bool>
      */
     protected $_accessible = [
-        'email' => true,
         'username' => true,
+        'email' => true,
         'firstname' => true,
         'lastname' => true,
         'password' => true,
+        'is_superiser' => true,
         'role' => true,
-        'is_superuser' => true,
         'created' => true,
         'modified' => true,
         'picks' => true,

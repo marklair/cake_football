@@ -9,8 +9,8 @@ use Cake\ORM\Entity;
  * Season Entity
  *
  * @property int $id
- * @property int $year
- * @property \Cake\I18n\FrozenTime|null $created
+ * @property int|null $year
+ * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime|null $modified
  *
  * @property \App\Model\Entity\Week[] $weeks

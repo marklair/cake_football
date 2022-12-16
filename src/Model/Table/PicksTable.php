@@ -51,15 +51,12 @@ class PicksTable extends Table
 
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id',
-            'joinType' => 'INNER',
         ]);
         $this->belongsTo('Games', [
             'foreignKey' => 'game_id',
-            'joinType' => 'INNER',
         ]);
         $this->belongsTo('Teams', [
             'foreignKey' => 'team_id',
-            'joinType' => 'INNER',
         ]);
     }
 
@@ -73,15 +70,15 @@ class PicksTable extends Table
     {
         $validator
             ->integer('user_id')
-            ->notEmptyString('user_id');
+            ->allowEmptyString('user_id');
 
         $validator
             ->integer('game_id')
-            ->notEmptyString('game_id');
+            ->allowEmptyString('game_id');
 
         $validator
             ->integer('team_id')
-            ->notEmptyString('team_id');
+            ->allowEmptyString('team_id');
 
         return $validator;
     }
