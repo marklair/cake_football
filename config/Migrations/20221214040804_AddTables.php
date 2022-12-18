@@ -21,7 +21,7 @@ class AddTables extends AbstractMigration
             ->addColumn('firstname', 'string')
             ->addColumn('lastname', 'string')
             ->addColumn('password', 'string')
-            ->addColumn('is_superiser', 'boolean', ['default' => false])
+            ->addColumn('is_superuser', 'boolean', ['default' => false])
             ->addColumn('role', 'string')
             ->addTimestamps('created', 'modified')
             ->create();

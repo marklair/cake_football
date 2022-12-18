@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var \App\View\AppView $this
  * @var iterable<\App\Model\Entity\Pick> $picks
@@ -21,20 +22,20 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($picks as $pick): ?>
-                <tr>
-                    <td><?= $this->Number->format($pick->id) ?></td>
-                    <td><?= $pick->has('user') ? $this->Html->link($pick->user->id, ['controller' => 'Users', 'action' => 'view', $pick->user->id]) : '' ?></td>
-                    <td><?= $pick->has('game') ? $this->Html->link($pick->game->id, ['controller' => 'Games', 'action' => 'view', $pick->game->id]) : '' ?></td>
-                    <td><?= $pick->has('team') ? $this->Html->link($pick->team->name, ['controller' => 'Teams', 'action' => 'view', $pick->team->id]) : '' ?></td>
-                    <td><?= h($pick->created) ?></td>
-                    <td><?= h($pick->modified) ?></td>
-                    <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $pick->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $pick->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $pick->id], ['confirm' => __('Are you sure you want to delete # {0}?', $pick->id)]) ?>
-                    </td>
-                </tr>
+                <?php foreach ($picks as $pick) : ?>
+                    <tr>
+                        <td><?= $this->Number->format($pick->id) ?></td>
+                        <td><?= $pick->has('user') ? $this->Html->link($pick->user->username, ['controller' => 'Users', 'action' => 'view', $pick->user->id]) : '' ?></td>
+                        <td><?= $pick->has('game') ? $this->Html->link($pick->game->id, ['controller' => 'Games', 'action' => 'view', $pick->game->id]) : '' ?></td>
+                        <td><?= $pick->has('team') ? $this->Html->link($pick->team->name, ['controller' => 'Teams', 'action' => 'view', $pick->team->id]) : '' ?></td>
+                        <td><?= h($pick->created) ?></td>
+                        <td><?= h($pick->modified) ?></td>
+                        <td class="actions">
+                            <?= $this->Html->link(__('View'), ['action' => 'view', $pick->id]) ?>
+                            <?= $this->Html->link(__('Edit'), ['action' => 'edit', $pick->id]) ?>
+                            <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $pick->id], ['confirm' => __('Are you sure you want to delete # {0}?', $pick->id)]) ?>
+                        </td>
+                    </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>

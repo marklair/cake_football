@@ -19,6 +19,11 @@ class UsersController extends AppController
         // Configure the login action to not require authentication, preventing
         // the infinite redirect loop issue
         $this->Authentication->addUnauthenticatedActions(['login', 'add']);
+
+        if (in_array($this->request->getParam('action'), ['add', 'login', 'logout'])) {
+            // In the add, login, and logout methods
+            $this->Authorization->skipAuthorization();
+        }
     }
 
     public function login()

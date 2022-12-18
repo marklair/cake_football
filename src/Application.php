@@ -19,25 +19,42 @@ declare(strict_types=1);
 namespace App;
 
 use Cake\Core\Configure;
-use Cake\Core\ContainerInterface;
-use Cake\Datasource\FactoryLocator;
-use Cake\Error\Middleware\ErrorHandlerMiddleware;
+use Cake\Routing\Router;
+use Cake\Http\ServerRequest;
 use Cake\Http\BaseApplication;
-use Cake\Http\Middleware\BodyParserMiddleware;
-use Cake\Http\Middleware\CsrfProtectionMiddleware;
 use Cake\Http\MiddlewareQueue;
+use Cake\Core\ContainerInterface;
 use Cake\ORM\Locator\TableLocator;
-use Cake\Routing\Middleware\AssetMiddleware;
-use Cake\Routing\Middleware\RoutingMiddleware;
+use CakeDC\Auth\Policy\RbacPolicy;
+use Cake\Datasource\FactoryLocator;
+use Authorization\Policy\MapResolver;
+use Authorization\Policy\OrmResolver;
 
 // In src/Application.php add the following imports
+use Authorization\AuthorizationService;
+use CakeDC\Auth\Policy\SuperuserPolicy;
+use CakeDC\Auth\Policy\CollectionPolicy;
 use Authentication\AuthenticationService;
-use Authentication\AuthenticationServiceInterface;
-use Authentication\AuthenticationServiceProviderInterface;
-use Authentication\Middleware\AuthenticationMiddleware;
-use Cake\Routing\Router;
-use Psr\Http\Message\ServerRequestInterface;
+use Authorization\Policy\ResolverCollection;
+use Cake\Routing\Middleware\AssetMiddleware;
 
+use Psr\Http\Message\ServerRequestInterface;
+use Cake\Http\Middleware\BodyParserMiddleware;
+use Cake\Routing\Middleware\RoutingMiddleware;
+use Authorization\Exception\ForbiddenException;
+use Authorization\AuthorizationServiceInterface;
+use Cake\Error\Middleware\ErrorHandlerMiddleware;
+use Authentication\AuthenticationServiceInterface;
+use Cake\Http\Middleware\CsrfProtectionMiddleware;
+use Authorization\Middleware\AuthorizationMiddleware;
+use Authentication\Middleware\AuthenticationMiddleware;
+use Authorization\AuthorizationServiceProviderInterface;
+use App\Middleware\UnauthorizedHandler\RedirectWhenDenied;
+use App\Policy\AllowDebugKitPolicy;
+use Authentication\AuthenticationServiceProviderInterface;
+use Authorization\Middleware\RequestAuthorizationMiddleware;
+use Authorization\Middleware\UnauthorizedHandler\ExceptionHandler;
+use Authorization\Middleware\UnauthorizedHandler\CakeRedirectHandler;
 
 /**
  * Application setup class.
@@ -45,7 +62,9 @@ use Psr\Http\Message\ServerRequestInterface;
  * This defines the bootstrapping logic and middleware layers you
  * want to use in your application.
  */
-class Application extends BaseApplication implements AuthenticationServiceProviderInterface
+class Application extends BaseApplication implements
+    AuthenticationServiceProviderInterface,
+    AuthorizationServiceProviderInterface
 {
     /**
      * Load all the application configuration and bootstrap logic.
@@ -75,6 +94,7 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
         }
 
         // Load more plugins here
+        $this->addPlugin('Authorization');
     }
 
     /**
@@ -104,6 +124,28 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
             ->add(new RoutingMiddleware($this))
 
             ->add(new AuthenticationMiddleware($this))
+
+            ->add(new AuthorizationMiddleware(
+                $this,
+                [
+                    'unauthorizedHandler' => [
+                        'className' => RedirectWhenDenied::class,
+                        // 'className' => ExceptionHandler::class,
+                        //'className' => CakeRedirectHandler::class,
+                        'url' => [
+                            'controller' => 'Users',
+                            'action' => 'login',
+                        ],
+                        'queryParam' => 'redirect',
+                        'exceptions' => [
+                            // MissingIdentityxception::class,
+                            ForbiddenException::class
+                        ],
+                    ],
+                ]
+            ))
+
+            ->add(new RequestAuthorizationMiddleware())
 
 
             // Parse various types of encoded request bodies so that they are
@@ -174,5 +216,29 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
         ]);
 
         return $authenticationService;
+    }
+
+    public function getAuthorizationService(ServerRequestInterface $request): AuthorizationServiceInterface
+    {
+        $map = new MapResolver();
+
+        $map->map(
+            ServerRequest::class,
+            new CollectionPolicy([
+                AllowDebugKitPolicy::class,
+                SuperuserPolicy::class,
+                // new SuperuserPolicy(['superuser_field' => 'is_superuser'])
+                RbacPolicy::class
+            ])
+        );
+
+        $orm = new OrmResolver();
+
+        $resolver = new ResolverCollection([
+            $map,
+            $orm
+        ]);
+
+        return new AuthorizationService($resolver);
     }
 }

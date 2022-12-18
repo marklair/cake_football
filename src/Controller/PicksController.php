@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Controller;
@@ -52,6 +53,9 @@ class PicksController extends AppController
         $pick = $this->Picks->newEmptyEntity();
         if ($this->request->is('post')) {
             $pick = $this->Picks->patchEntity($pick, $this->request->getData());
+
+            $pick->user_id = $this->request->getAttribute('identity')->getIdentifier();
+
             if ($this->Picks->save($pick)) {
                 $this->Flash->success(__('The pick has been saved.'));
 
